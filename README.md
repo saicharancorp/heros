@@ -48,3 +48,13 @@ curl --location --request POST 'http://localhost:8080/api/tutorials'
 --header 'Content-Type: application/json' 
 --header 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' 
 --data-raw '{ "title": "test", "description": "test", "published": true }'
+
+
+curl --location --request POST 'http://localhost:8080/addUser' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+--data-raw '{
+    "name":"test",
+    "address":"test"
+}'
