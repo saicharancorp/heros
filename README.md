@@ -56,5 +56,6 @@ curl --location --request POST 'http://localhost:8080/addUser' \
 --header 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
 --data-raw '{
     "name":"test",
-    "address":"test"
+    "address":"test",
+    "marks":100
 }'
