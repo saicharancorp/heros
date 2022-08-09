@@ -29,3 +29,14 @@ curl --location --request POST 'http://localhost:8080/employees' \
    "no_of_childrens":2,
    "spouse":true
 }'
+
+curl --location --request POST 'http://localhost:8080/student' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=' \
+--data-raw '{
+    "id":11,
+    "name":"student",
+    "age":"28",
+    "email":"test@gmail.com"
+}'
