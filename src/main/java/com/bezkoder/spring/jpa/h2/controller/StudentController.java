@@ -9,62 +9,34 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/student-jpa")
 public class StudentController {
 	
 	@Autowired
-	private StudentService studentService;
-
-	@GetMapping("/say")
-	public String sayHello() {
-		return "Hello Spring boot";
+	StudentService studentService;
+	
+	@PostMapping("/student")
+	public Student saveStudent(@RequestBody Student student) {
+		return studentService.saveStudent(student);
 	}
 	
-	@GetMapping
-	public List<Student> getAll() {
-		return studentService.getAll();
+	@GetMapping("/student/{id}")
+	public Student getStudent(@PathVariable("id") Long id) {
+		return studentService.getStudentById(id);
 	}
 	
-
-	@GetMapping("/{rollNo}")
-	public Student getStudentById(@PathVariable int rollNo ) {
-		return studentService.getStudentById(rollNo);
+	@GetMapping("/student")
+	public List<Student> getAllStudent(){
+	 	return studentService.getAllStudent();
 	}
 	
-	@GetMapping("/firstName/{firstName}")
-	public List<Student> getStudentByName(@PathVariable String firstName ) {
-		return studentService.getStudentByFirstName(firstName);
-	}
-
-	// get Student by first name (equals())
-	@GetMapping("/one-by-firstName/{firstName}")
-	public Student getOneStudentByFirstName(@PathVariable String firstName) {
-		return studentService.getOneStudentByFirstName(firstName);
-	}
-
-	// get Student by first name %LIKE%
-	@GetMapping("/firstName-like/{firstName}")
-	public List<Student> getStudentByFirstNameLike(@PathVariable String firstName) {
-		return studentService.getStudentByFirstNameLike(firstName);
-	}
-
-	@GetMapping("/one-by-lastName/{lastName}")
-	public Student getStudentBylName(@PathVariable String lastName) {
-		return studentService.getStudentByLastName(lastName);
-	}
-
-
-	@GetMapping("/salary-greater-than/{salary}")
-	public List<Student> getStudentBySalaryGreaterThan(@PathVariable int salary) {
-		return studentService.getStudentBySalaryGreaterThan(salary);
+	@PutMapping("/student/{id}")
+	public Student updateStudent(@PathVariable("id") Long id, @RequestBody Student student) {
+		return studentService.updateStudent(id, student);
 	}
 	
-	@PostMapping("/get-by-condition")
-	public List<Student> getStudentByCondition(@RequestBody Student student) {
-		return studentService.getStudentByCondition(student);
+	@DeleteMapping("/student/{id}")
+	public String deleteStudent(@PathVariable("id") Long id) {
+		return studentService.deleteStudent(id);
 	}
+
 }
-
-
-
-

@@ -1,6 +1,5 @@
 package com.bezkoder.spring.jpa.h2.utils;
 
-import com.bezkoder.spring.jpa.h2.model.Student;
 import com.bezkoder.spring.jpa.h2.model.SuperHero;
 import com.bezkoder.spring.jpa.h2.model.emp.Address;
 import com.bezkoder.spring.jpa.h2.model.emp.Employee;
@@ -15,20 +14,6 @@ public class HelperUtil {
     private HelperUtil() {
     }
 
-
-    public static Supplier<List<Student>> studentSupplier = () ->
-            Arrays.asList(
-		            Student.builder().rollNo(1).firstName("Binay").lastName("Gurung").marks(300.0f).build(),
-		            Student.builder().rollNo(2).firstName("Rahul").lastName("Ghadage").marks(950.0f).build(),
-		            Student.builder().rollNo(3).firstName("Sunny").lastName("Deol").marks(500.0f).build(),
-		            Student.builder().rollNo(4).firstName("Salman").lastName("Khan").marks(600.0f).build(),
-		            Student.builder().rollNo(5).firstName("Aamir").lastName("Khan").marks(700.0f).build(),
-		            Student.builder().rollNo(6).firstName("Shahrukh").lastName("Khan").marks(800.0f).build(),
-		            Student.builder().rollNo(7).firstName("Ranbir").lastName("Kapoor").marks(900.0f).build(),
-		            Student.builder().rollNo(8).firstName("Ranveer").lastName("Singh").marks(800.0f).build(),
-		            Student.builder().rollNo(9).firstName("Akshay").lastName("Kumar").marks(900.0f).build(),
-		            Student.builder().rollNo(10).firstName("Ajay").lastName("Devgan").marks(800.0f).build()
-            );
 
 
 

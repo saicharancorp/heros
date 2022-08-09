@@ -1,28 +1,51 @@
 package com.bezkoder.spring.jpa.h2.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Entity
-@Table
-public class Student implements Serializable {
-
-	@Id
-	@GeneratedValue
-	private int id;
-
-	private int rollNo;
-	private String firstName;
-	private String lastName;
-	private float marks;
+@Entity //mark class as entity
+@Table //defining class name as Table name
+public class Student {
 	
+	@Column //defining id as primary key
+	@Id
+	private Long id;
+	
+	@Column 
+	private String name;
+	
+	@Column
+	private Integer age;
+	
+	@Column
+	private String email;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+
 }
