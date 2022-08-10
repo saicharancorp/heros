@@ -39,7 +39,7 @@ public class UserService {
 			oldUser.setMarks(user.getMarks());
 			userRepository.save(oldUser);
 		}else {
-			return new User();
+			return userRepository.save(user);
 		}
 		return oldUser;
 	}
