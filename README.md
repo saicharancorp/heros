@@ -1,7 +1,7 @@
 
 ## Run Spring Boot application
 ```
-mvn spring-boot:run
+mvn clean spring-boot:run
 ```
 https://github.com/rahul-ghadge/spring-boot-h2-crud
 
