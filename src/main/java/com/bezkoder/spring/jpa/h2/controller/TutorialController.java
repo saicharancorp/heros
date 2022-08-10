@@ -2,6 +2,7 @@ package com.bezkoder.spring.jpa.h2.controller;
 
 import com.bezkoder.spring.jpa.h2.model.Tutorial;
 import com.bezkoder.spring.jpa.h2.repository.TutorialRepository;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,8 +52,10 @@ public class TutorialController {
 	}
 
 	@PostMapping("/tutorials")
-	public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
+	public ResponseEntity<?> createTutorial(@RequestBody Tutorial tutorial) {
 		try {
+			ResponseEntity<JSONObject> jsonObject = validateBody(tutorial);
+			if (jsonObject != null) return jsonObject;
 			Tutorial _tutorial = tutorialRepository
 					.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
 			return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
@@ -61,8 +64,23 @@ public class TutorialController {
 		}
 	}
 
+	private ResponseEntity<JSONObject> validateBody(Tutorial tutorial) {
+		JSONObject jsonObject = new JSONObject();
+		if (tutorial.getTitle()==null){
+			jsonObject.put("message","Title is required");
+			return ResponseEntity.badRequest().body(jsonObject);
+		}
+		if (tutorial.getDescription()==null){
+			jsonObject.put("message","Description is required");
+			return ResponseEntity.badRequest().body(jsonObject);
+		}
+		return null;
+	}
+
 	@PutMapping("/tutorials/{id}")
-	public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
+	public ResponseEntity<?> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
+		ResponseEntity<JSONObject> jsonObject = validateBody(tutorial);
+		if (jsonObject != null) return jsonObject;
 		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
 
 		if (tutorialData.isPresent()) {
