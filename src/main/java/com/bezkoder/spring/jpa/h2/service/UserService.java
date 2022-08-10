@@ -36,6 +36,7 @@ public class UserService {
 			oldUser=optionaluser.get();
 			oldUser.setName(user.getName());
 			oldUser.setAddress(user.getAddress());
+			oldUser.setMarks(user.getMarks());
 			userRepository.save(oldUser);
 		}else {
 			return new User();
